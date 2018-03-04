@@ -1,0 +1,25 @@
+<h1>Jobs#new</h1>
+
+<%= form_for @job do |j| %>
+  <% if @job.errors.any? %>
+    <% pluralize(@job.errors.count, 'error') %>
+      <ul>
+        <% @job.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+  
+  <%= j.label :job_code %>
+  <%= j.text_field :job_code %></br></br>
+  
+  <%= j.fields_for :company do |c| %>
+    <%= c.label :company %>
+    <%= c.text_field :name %>
+  <% end %>
+    </br></br>
+  <%= j.submit 'Submit' %>
+  
+<% end %>
